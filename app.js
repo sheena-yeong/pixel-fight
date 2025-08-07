@@ -165,6 +165,13 @@ const keys = {
 
 decreaseTimer();
 
+function jump(character) {
+  const onGroundChar = character.velocity.y === 0;
+  if (onGroundChar) {
+    character.velocity.y = -20;
+  }
+}
+
 function animate() {
   window.requestAnimationFrame(animate);
 
@@ -179,8 +186,12 @@ function animate() {
   player.velocity.x = 0; // Make sure sprite stops moving when key is up
   enemy.velocity.x = 0;
 
-  // player movement
+  // restrict x boundary
+  // if (player.position.x === 0) {
+  //   player.velocity.x = 0;
+  // }
 
+  // player movement
   if (keys.a.pressed && player.lastKey === "a") {
     player.velocity.x = -5;
     player.switchSprite("run");
@@ -222,7 +233,7 @@ function animate() {
     }) &&
     player.isAttacking && player.framesCurrent === 4
   ) {
-    enemy.health -= 20;
+    enemy.health -= 15;
     enemy.takeHit()
     player.isAttacking = false;
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
@@ -274,7 +285,7 @@ window.addEventListener("keydown", (event) => {
       player.lastKey = "a";
       break;
     case "w":
-      player.velocity.y = -20;
+      jump(player)
       break;
     case " ":
       player.attack();
@@ -293,7 +304,7 @@ if (!enemy.dead) {
       enemy.lastKey = "ArrowLeft";
       break;
     case "ArrowUp":
-      enemy.velocity.y = -20;
+      jump(enemy)
       break;
     case "ArrowDown":
       enemy.attack();
