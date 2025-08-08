@@ -186,10 +186,19 @@ function animate() {
   player.velocity.x = 0; // Make sure sprite stops moving when key is up
   enemy.velocity.x = 0;
 
-  // restrict x boundary
-  // if (player.position.x === 0) {
-  //   player.velocity.x = 0;
-  // }
+  // restrict x boundary for player
+  if (player.position.x < 0) {
+    player.position.x = 0;
+  } else if (player.position.x > 1024 - player.width) {
+    player.position.x = 1024 - player.width;
+  }
+
+  // restrict x boundary for enemy
+  if (enemy.position.x < 0) {
+    enemy.position.x = 0;
+  } else if (enemy.position.x > 1024 - enemy.width) {
+    enemy.position.x = 1024 - enemy.width;
+  } 
 
   // player movement
   if (keys.a.pressed && player.lastKey === "a") {
