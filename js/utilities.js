@@ -12,17 +12,27 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 
 function determineWinner({player, enemy, timerID}) {
   clearTimeout(timerID);
+  decreaseRoundTimer();
   document.querySelector('#displayText').style.display = "flex";
+  document.querySelector('#roundCountDown').style.display = "flex";
+
   if (player.health === enemy.health) {
     document.querySelector('#displayText').innerHTML = "Tie";
   } else if (player.health > enemy.health) {
     document.querySelector('#displayText').innerHTML = "Player 1 Wins";
+    playerPoints += 1;
   } else if (enemy.health > player.health) {
     document.querySelector('#displayText').innerHTML = "Player 2 Wins";
+    enemyPoints += 1;
   }
+
+  document.querySelector('#playerPoints').innerHTML = "Wins: " + playerPoints;
+  document.querySelector('#enemyPoints').innerHTML = "Wins: " + enemyPoints;
+
+  console.log(`Round: ${round}; Player 1: ${playerPoints}; Player 2: ${enemyPoints}`)
 }
 
-let timer = 60;
+let timer = 30;
 let timerID;
 function decreaseTimer() {
   if (timer > 0) {
@@ -33,5 +43,27 @@ function decreaseTimer() {
 
   if (timer === 0) {
     determineWinner({player, enemy, timerID})
+  }
+}
+
+let roundTimer = 8;
+let roundTimerID;
+function decreaseRoundTimer() {
+  if (roundTimer > 0) {
+    canAttack = false;
+    roundTimerID = setTimeout(decreaseRoundTimer, 1000);
+    roundTimer--;
+    document.querySelector('#roundCountDown').innerHTML = "Next Round in " + roundTimer;
+  }
+
+  if (roundTimer === 0) {
+    console.log("Start Next Round");
+    player.position.x = 100
+    player.health = 100
+    player.switchSprite("idle")
+
+    enemy.position.x = 900
+    enemy.health = 100
+    enemy.switchSprite("idle")
   }
 }

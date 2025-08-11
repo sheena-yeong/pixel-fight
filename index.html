@@ -43,7 +43,6 @@
               right: 0;
               bottom: 0;
               width: 100%;
-
             "
           ></div>
         </div>
@@ -81,6 +80,8 @@
           ></div>
         </div>
       </div>
+      
+      <!--Display Outcome-->
       <div 
       id="displayText"
       style="
@@ -93,12 +94,57 @@
       left: 0;
       align-items: center;
       justify-content: center;
-      ">Tie</div>
+      "></div>
+
+      <!--Display Round Count Down-->
+      <div 
+      id="roundCountDown"
+      style="
+      position: absolute;
+      color: white;
+      display: none;
+      top: 50px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      align-items: center;
+      justify-content: center;
+      "></div>
+
+      <!--Display player wins-->
+      <div 
+      id="playerPoints"
+      style="
+      position: absolute;
+      color: white;
+      display: flex;
+      top: 70px;
+      right: 0;
+      bottom: 100;
+      left: 20px;
+      justify-content: left;
+      ">Wins: 0</div>
+
+      <!--Display enemy wins-->
+      <div 
+      id="enemyPoints"
+      style="
+      position: absolute;
+      color: white;
+      display: flex;
+      top: 70px;
+      right: 20px;
+      bottom: 100;
+      left: 0;
+      justify-content: right;
+      ">Wins: 0</div>
+
+
       <!-- Canvas -->
       <canvas></canvas>
     </div>
     <p> Controls:</p>
-    <ul>
+    <ul style="font-size: 15px;">
       <li>Player 1: Movement (A, D), Jump (W), Attack (Space)</li>
       <li>Player 2: Movement (←, →), Jump (↑), Attack (↓)</li>
     </ul>

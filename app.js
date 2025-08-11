@@ -2,6 +2,11 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
+let playerPoints = 0;
+let enemyPoints = 0;
+let round = 1;
+let canAttack = true;
+
 canvas.width = 1024;
 canvas.height = 576;
 
@@ -130,7 +135,7 @@ const enemy = new Fighter({
       framesMax: 4,
     },
     takeHit: {
-      imageSrc: "./assets/samurai2/Take hit - white silhoutte2.png",
+      imageSrc: "./assets/samurai2/Take hit - white silhouette2.png",
       framesMax: 3,
     },
     death: {
@@ -201,20 +206,22 @@ function animate() {
   } 
 
   // player movement
-  if (keys.a.pressed && player.lastKey === "a") {
-    player.velocity.x = -5;
-    player.switchSprite("run");
-  } else if (keys.d.pressed && player.lastKey === "d") {
-    player.velocity.x = 5;
-    player.switchSprite("run");
-  } else {
-    player.switchSprite("idle");
-  }
-
-  if (player.velocity.y < 0) {
-    player.switchSprite("jump");
-  } else if (player.velocity.y > 0) {
-    player.switchSprite("fall");
+  if (!player.dead) {
+    if (keys.a.pressed && player.lastKey === "a") {
+      player.velocity.x = -5;
+      player.switchSprite("run");
+    } else if (keys.d.pressed && player.lastKey === "d") {
+      player.velocity.x = 5;
+      player.switchSprite("run");
+    } else {
+      player.switchSprite("idle");
+    }
+  
+    if (player.velocity.y < 0) {
+      player.switchSprite("jump");
+    } else if (player.velocity.y > 0) {
+      player.switchSprite("fall");
+    }
   }
 
   // enemy movement
@@ -240,17 +247,16 @@ function animate() {
       rectangle1: player,
       rectangle2: enemy,
     }) &&
-    player.isAttacking && player.framesCurrent === 4
+    player.isAttacking && player.framesCurrent === 4 && canAttack
   ) {
-    enemy.health -= 15;
-    enemy.takeHit()
+    enemy.takeHit(10)
     player.isAttacking = false;
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
     console.log("player attack");
   }
 
   // if player misses
-  if (player.isAttacking && player.framesCurrent === 4){
+  if (player.isAttacking && player.framesCurrent === 4 && canAttack){
     player.isAttacking = false
   }
 
@@ -259,23 +265,22 @@ function animate() {
       rectangle1: enemy,
       rectangle2: player,
     }) &&
-    enemy.isAttacking && enemy.framesCurrent === 2
+    enemy.isAttacking && enemy.framesCurrent === 2 && canAttack
   ) {
-    player.health -= 10;
-    player.takeHit()
+    player.takeHit(10)
     enemy.isAttacking = false;
     document.querySelector("#playerHealth").style.width = player.health + "%";
     console.log("enemy attack");
   }
 
   // if enemy misses
-   if (enemy.isAttacking && enemy.framesCurrent === 2){
+   if (enemy.isAttacking && enemy.framesCurrent === 2 && canAttack){
     enemy.isAttacking = false
   }
 
   // end game if health is zero
-  if (enemy.health <= 0 || player.health <= 0) {
-    determineWinner({ player, enemy, timerID });
+  if ((enemy.health <= 0 || player.health <= 0) && round - 1 === playerPoints + enemyPoints) {
+  determineWinner({ player, enemy, timerID });
   }
 }
 
