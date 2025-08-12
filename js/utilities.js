@@ -12,10 +12,10 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 
 function determineWinner({ player, enemy, timerID }) {
   clearTimeout(timerID);
-  decreaseRoundTimer();
   document.querySelector("#displayText").style.display = "flex";
   document.querySelector("#roundCountDown").style.display = "flex";
-
+  
+  
   if (player.health === enemy.health) {
     document.querySelector("#displayText").innerHTML = "Tie";
   } else if (player.health > enemy.health) {
@@ -25,16 +25,29 @@ function determineWinner({ player, enemy, timerID }) {
     document.querySelector("#displayText").innerHTML = "Player 2 Wins";
     enemyPoints += 1;
   }
-
+  
+  
   document.querySelector("#playerPoints").innerHTML = "Wins: " + playerPoints;
   document.querySelector("#enemyPoints").innerHTML = "Wins: " + enemyPoints;
 
+  if (playerPoints === 3 || enemyPoints === 3) {
+    if (playerPoints > enemyPoints) {
+      document.querySelector("#displayText").innerHTML = "Player 1 Wins the game!";
+      document.querySelector("#roundCountDown").innerHTML = "~ Thanks for playing ~";
+    } else {
+      document.querySelector("#displayText").innerHTML = "Player 2 Wins the game!";
+      document.querySelector("#roundCountDown").innerHTML = "~ Thanks for playing ~";
+    }
+    return
+  }
+  decreaseRoundTimer();
+  
   console.log(
     `Round: ${round} | Player 1: ${playerPoints} | Player 2: ${enemyPoints}`
   );
 }
 
-let timer = 3;
+let timer = 31;
 let timerID;
 function decreaseTimer() {
   if (timer > 0) {
@@ -49,7 +62,7 @@ function decreaseTimer() {
   }
 }
 
-let roundTimer = 3;
+let roundTimer = 8;
 let roundTimerID;
 
 function decreaseRoundTimer() {
@@ -60,7 +73,6 @@ function decreaseRoundTimer() {
     document.querySelector("#roundCountDown").innerHTML =
       "Next Round in " + roundTimer;
   } else if (roundTimer === 0 && gameOver) {
-    console.log("Start Next Round");
     nextRound()
   }
 }
@@ -86,9 +98,13 @@ function nextRound() {
   
   document.querySelector("#roundCountDown").innerHTML = null;
   document.querySelector("#displayText").innerHTML = null;
+
+  
+
+  document.querySelector("#round").innerHTML = "Round " + round;
   canAttack = true;
   roundTimer = 8;
-  timer = 30;
+  timer = 31;
   gameOver = false;
   decreaseTimer();
 }
