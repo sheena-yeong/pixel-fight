@@ -6,6 +6,7 @@ let playerPoints = 0;
 let enemyPoints = 0;
 let round = 1;
 let canAttack = true;
+let gameOver = false;
 
 canvas.width = 1024;
 canvas.height = 576;
@@ -244,7 +245,7 @@ function animate() {
     player.framesCurrent === 4 &&
     canAttack
   ) {
-    enemy.takeHit(10);
+    enemy.takeHit(15);
     player.isAttacking = false;
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
     console.log("player attack");
@@ -278,8 +279,9 @@ function animate() {
   // end game if health is zero
   if (
     (player.health <= 0 || enemy.health <= 0) &&
-    round - 1 === playerPoints + enemyPoints
+    !gameOver
   ) {
+    gameOver = true;
     determineWinner({ player, enemy, timerID });
   }
 }

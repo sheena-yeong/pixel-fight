@@ -30,11 +30,11 @@ function determineWinner({ player, enemy, timerID }) {
   document.querySelector("#enemyPoints").innerHTML = "Wins: " + enemyPoints;
 
   console.log(
-    `Round: ${round}; Player 1: ${playerPoints}; Player 2: ${enemyPoints}`
+    `Round: ${round} | Player 1: ${playerPoints} | Player 2: ${enemyPoints}`
   );
 }
 
-let timer = 30;
+let timer = 3;
 let timerID;
 function decreaseTimer() {
   if (timer > 0) {
@@ -44,11 +44,12 @@ function decreaseTimer() {
   }
 
   if (timer === 0) {
+    gameOver = true;
     determineWinner({ player, enemy, timerID });
   }
 }
 
-let roundTimer = 8;
+let roundTimer = 3;
 let roundTimerID;
 
 function decreaseRoundTimer() {
@@ -58,7 +59,36 @@ function decreaseRoundTimer() {
     roundTimer--;
     document.querySelector("#roundCountDown").innerHTML =
       "Next Round in " + roundTimer;
-  } else if (roundTimer === 0) {
+  } else if (roundTimer === 0 && gameOver) {
     console.log("Start Next Round");
+    nextRound()
   }
+}
+
+function nextRound() {
+  round++
+
+  player.position.x = 100;
+  player.health = 100;
+  player.dead = false;
+  player.image = player.sprites.idle.image;
+  player.framesMax = player.sprites.idle.framesMax;
+  player.framesCurrent = 0;
+  document.querySelector("#playerHealth").style.width = player.health + "%";
+
+  enemy.position.x = 900;
+  enemy.health = 100;
+  enemy.dead = false;
+  enemy.image = player.sprites.idle.image;
+  enemy.framesMax = player.sprites.idle.framesMax;
+  enemy.framesCurrent = 0;
+  document.querySelector("#enemyHealth").style.width = enemy.health + "%";
+  
+  document.querySelector("#roundCountDown").innerHTML = null;
+  document.querySelector("#displayText").innerHTML = null;
+  canAttack = true;
+  roundTimer = 8;
+  timer = 30;
+  gameOver = false;
+  decreaseTimer();
 }
