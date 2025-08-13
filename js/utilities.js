@@ -81,7 +81,7 @@ function decreaseRoundTimer() {
 function nextRound() {
   round++;
 
-  player.position.x = 100;
+  player.position.x = 80;
   player.health = 100;
   player.dead = false;
   player.image = player.sprites.idle.image;

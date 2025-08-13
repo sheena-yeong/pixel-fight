@@ -26,7 +26,7 @@ const background = new Sprite({
 // Create player
 const player = new Fighter({
   position: {
-    x: 100,
+    x: 80,
     y: 0,
   },
   velocity: {
