@@ -248,7 +248,6 @@ function animate() {
     enemy.takeHit(15);
     player.isAttacking = false;
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
-    console.log("player attack");
   }
 
   // if player misses
@@ -265,7 +264,6 @@ function animate() {
     enemy.framesCurrent === 2 &&
     canAttack
   ) {
-    console.log("enemy attack");
     player.takeHit(10);
     enemy.isAttacking = false;
     document.querySelector("#playerHealth").style.width = player.health + "%";
@@ -277,10 +275,7 @@ function animate() {
   }
 
   // end game if health is zero
-  if (
-    (player.health <= 0 || enemy.health <= 0) &&
-    !gameOver
-  ) {
+  if ((player.health <= 0 || enemy.health <= 0) && !gameOver) {
     gameOver = true;
     determineWinner({ player, enemy, timerID });
   }
@@ -289,8 +284,11 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (event) => {
+  if (event.key === "r") {
+    resetGame()
+  }
+
   if (!player.dead) {
-    // console.log(event.key)
     switch (event.key) {
       case "d":
         keys.d.pressed = true;

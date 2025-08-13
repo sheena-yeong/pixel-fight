@@ -14,37 +14,38 @@ function determineWinner({ player, enemy, timerID }) {
   clearTimeout(timerID);
   document.querySelector("#displayText").style.display = "flex";
   document.querySelector("#roundCountDown").style.display = "flex";
-  
-  
+  document.querySelector("#reset").style.display = "flex";
+
   if (player.health === enemy.health) {
     document.querySelector("#displayText").innerHTML = "Tie";
   } else if (player.health > enemy.health) {
-    document.querySelector("#displayText").innerHTML = "Player 1 Wins";
+    document.querySelector("#displayText").innerHTML = "Player 1 Wins a Point";
     playerPoints += 1;
   } else if (enemy.health > player.health) {
-    document.querySelector("#displayText").innerHTML = "Player 2 Wins";
+    document.querySelector("#displayText").innerHTML = "Player 2 Wins a Point";
     enemyPoints += 1;
   }
-  
-  
-  document.querySelector("#playerPoints").innerHTML = "Wins: " + playerPoints;
-  document.querySelector("#enemyPoints").innerHTML = "Wins: " + enemyPoints;
+
+  document.querySelector("#playerPoints").innerHTML = "Points: " + playerPoints;
+  document.querySelector("#enemyPoints").innerHTML = "Points: " + enemyPoints;
 
   if (playerPoints === 3 || enemyPoints === 3) {
     if (playerPoints > enemyPoints) {
-      document.querySelector("#displayText").innerHTML = "Player 1 Wins the game!";
-      document.querySelector("#roundCountDown").innerHTML = "~ Thanks for playing ~";
+      document.querySelector("#displayText").innerHTML =
+        "Player 1 Wins the game!";
+      document.querySelector("#roundCountDown").innerHTML =
+        "~ Thanks for playing ~";
+      document.querySelector("#reset").innerHTML = "Press R to Play Again"
     } else {
-      document.querySelector("#displayText").innerHTML = "Player 2 Wins the game!";
-      document.querySelector("#roundCountDown").innerHTML = "~ Thanks for playing ~";
+      document.querySelector("#displayText").innerHTML =
+        "Player 2 Wins the game!";
+      document.querySelector("#roundCountDown").innerHTML =
+        "~ Thanks for playing ~";
+      document.querySelector("#reset").innerHTML = "Press R to Play Again"
     }
-    return
+    return;
   }
   decreaseRoundTimer();
-  
-  console.log(
-    `Round: ${round} | Player 1: ${playerPoints} | Player 2: ${enemyPoints}`
-  );
 }
 
 let timer = 31;
@@ -73,12 +74,12 @@ function decreaseRoundTimer() {
     document.querySelector("#roundCountDown").innerHTML =
       "Next Round in " + roundTimer;
   } else if (roundTimer === 0 && gameOver) {
-    nextRound()
+    nextRound();
   }
 }
 
 function nextRound() {
-  round++
+  round++;
 
   player.position.x = 100;
   player.health = 100;
@@ -95,11 +96,9 @@ function nextRound() {
   enemy.framesMax = player.sprites.idle.framesMax;
   enemy.framesCurrent = 0;
   document.querySelector("#enemyHealth").style.width = enemy.health + "%";
-  
+
   document.querySelector("#roundCountDown").innerHTML = null;
   document.querySelector("#displayText").innerHTML = null;
-
-  
 
   document.querySelector("#round").innerHTML = "Round " + round;
   canAttack = true;
@@ -107,4 +106,20 @@ function nextRound() {
   timer = 31;
   gameOver = false;
   decreaseTimer();
+}
+
+function resetGame() {
+  console.log("Game Resetting")
+  nextRound();
+  round = 1;
+  document.querySelector("#round").innerHTML = "Round " + round;
+
+  playerPoints = 0;
+  document.querySelector("#playerPoints").innerHTML = "Points: " + playerPoints;
+  
+  enemyPoints = 0;
+  document.querySelector("#enemyPoints").innerHTML = "Points: " + enemyPoints;
+
+  document.querySelector("#reset").innerHTML = null;
+  document.querySelector("#reset").style.display = "none";
 }

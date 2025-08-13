@@ -100,22 +100,6 @@ class Fighter extends Sprite {
     }
   }
 
-  // draw() {
-  //   c.fillStyle = this.color;
-  //   c.fillRect(this.position.x, this.position.y, this.width, this.height);
-
-  // // attack box
-  //   if (this.isAttacking) {
-  //     c.fillStyle = "green";
-  //     c.fillRect(
-  //       this.attackBox.position.x,
-  //       this.attackBox.position.y,
-  //       this.attackBox.width,
-  //       this.attackBox.height
-  //     );
-  //   }
-  // }
-
   update() {
     this.draw();
     if (this.image === this.sprites.death.image) {
@@ -160,22 +144,7 @@ class Fighter extends Sprite {
 
   takeHit(damage) {
     this.health = Math.max(0, this.health - damage);
-    console.log(this.health);
     if (this.health <= 0) {
-      console.log("Switching to death sprite");
-      this.dead = true;
-      this.switchSprite("death");
-    } else {
-      this.switchSprite("takeHit");
-    }
-  }
-
-  // Fixed takeHit method
-  takeHit(damage) {
-    this.health = Math.max(0, this.health - damage);
-    console.log(this.health);
-    if (this.health <= 0) {
-      console.log("Switching to death sprite");
       this.dead = true; // Set dead flag immediately when health reaches 0
       this.switchSprite("death");
     } else {
@@ -183,7 +152,6 @@ class Fighter extends Sprite {
     }
   }
 
-  // Fixed switchSprite method
   switchSprite(sprite) {
     // If character is already playing death animation, don't allow any other sprite changes
     if (this.image === this.sprites.death.image) {

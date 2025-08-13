@@ -3,19 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <style>
-      * {
-        box-sizing: border-box;
-        font-family: "Press Start 2P", system-ui;
-      }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet">
     <script src="./js/utilities.js" defer></script>
     <script src="./js/classes.js" defer></script>
     <script src="app.js" defer></script>
-    
+
     <title>Document</title>
   </head>
   <body>
@@ -32,8 +30,16 @@
         "
       >
         <!-- Player health -->
-        <div style="position: relative; height: 30px; width: 100%; display: flex; justify-content: flex-end;">
-          <div style="background-color: red; height: 30px; width: 100%;"></div>
+        <div
+          style="
+            position: relative;
+            height: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+          "
+        >
+          <div style="background-color: red; height: 30px; width: 100%"></div>
           <div
             id="playerHealth"
             style="
@@ -62,11 +68,13 @@
             border: 3px solid white;
             border-radius: 10px;
           "
-        >10</div>
+        >
+          10
+        </div>
 
         <!-- Enemy health -->
         <div style="position: relative; height: 30px; width: 100%">
-          <div style="background-color: red; height: 30px;"></div>
+          <div style="background-color: red; height: 30px"></div>
           <div
             id="enemyHealth"
             style="
@@ -80,85 +88,112 @@
           ></div>
         </div>
       </div>
-      
+
       <!--Display Outcome-->
-      <div 
-      id="displayText"
-      style="
-      position: absolute;
-      color: white;
-      display: none;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      align-items: center;
-      justify-content: center;
-      "></div>
+      <div
+        id="displayText"
+        style="
+          position: absolute;
+          color: white;
+          display: none;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          align-items: center;
+          justify-content: center;
+        "
+      ></div>
 
       <!--Display Round Count Down-->
-      <div 
-      id="roundCountDown"
-      style="
-      position: absolute;
-      color: white;
-      display: none;
-      top: 50px;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      align-items: center;
-      justify-content: center;
-      "></div>
+      <div
+        id="roundCountDown"
+        style="
+          position: absolute;
+          color: white;
+          display: none;
+          top: 50px;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          align-items: center;
+          justify-content: center;
+        "
+      ></div>
+
+      <!--Display Play Again-->
+      <div
+        id="reset"
+        style="
+          position: absolute;
+          color: white;
+          display: none;
+          top: 100px;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          align-items: center;
+          justify-content: center;
+        "
+      ></div>
 
       <!--Display player wins-->
-      <div 
-      id="playerPoints"
-      style="
-      position: absolute;
-      color: white;
-      display: flex;
-      top: 70px;
-      right: 0;
-      bottom: 0;
-      left: 20px;
-      justify-content: left;
-      ">Wins: 0</div>
+      <div
+        id="playerPoints"
+        style="
+          position: absolute;
+          color: white;
+          display: flex;
+          top: 70px;
+          right: 0;
+          bottom: 0;
+          left: 20px;
+          justify-content: left;
+        "
+      >
+        Points: 0
+      </div>
 
       <!--Display enemy wins-->
-      <div 
-      id="enemyPoints"
-      style="
-      position: absolute;
-      color: white;
-      display: flex;
-      top: 70px;
-      right: 20px;
-      bottom: 0;
-      left: 0;
-      justify-content: right;
-      ">Wins: 0</div>
+      <div
+        id="enemyPoints"
+        style="
+          position: absolute;
+          color: white;
+          display: flex;
+          top: 70px;
+          right: 20px;
+          bottom: 0;
+          left: 0;
+          justify-content: right;
+        "
+      >
+        Points: 0
+      </div>
 
       <!--Display Round-->
-      <div 
-      id="round"
-      style="
-      position: absolute;
-      color: white;
-      display: flex;
-      top: 80px;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      justify-content: center;
-      ">Round 1</div>
-
+      <div
+        id="round"
+        style="
+          position: absolute;
+          color: white;
+          display: flex;
+          top: 80px;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          justify-content: center;
+        "
+      >
+        Round 1
+      </div>
 
       <!-- Canvas -->
       <canvas></canvas>
     </div>
-    <p> Controls:</p>
-    <ul style="font-size: 15px;">
+    <p>Win condition: First to 3 points wins the game</p>
+    <p>Controls:</p>
+    <ul style="font-size: 15px">
       <li>Player 1: Movement (A, D), Jump (W), Attack (Space)</li>
       <li>Player 2: Movement (←, →), Jump (↑), Attack (↓)</li>
     </ul>
