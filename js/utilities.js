@@ -32,13 +32,13 @@ function determineWinner({ player, enemy, timerID }) {
   if (playerPoints === 3 || enemyPoints === 3) {
     if (playerPoints > enemyPoints) {
       document.querySelector("#displayText").innerHTML =
-        "Player 1 Wins the game!";
+        "P1 WINS";
       document.querySelector("#roundCountDown").innerHTML =
         "~ Thanks for playing ~";
       document.querySelector("#reset").innerHTML = "Press R to Play Again"
     } else {
       document.querySelector("#displayText").innerHTML =
-        "Player 2 Wins the game!";
+        "P2 WINS";
       document.querySelector("#roundCountDown").innerHTML =
         "~ Thanks for playing ~";
       document.querySelector("#reset").innerHTML = "Press R to Play Again"
@@ -125,7 +125,7 @@ function resetGame() {
   document.querySelector("#reset").style.display = "none";
 }
 
-function startGame() {
+function showHUD() {
   document.querySelector("#round").innerHTML = "Round 1";
   document.querySelector("#title").style.display = "none";
   document.querySelectorAll(".line").forEach(el => {el.style.display = "none";})
@@ -136,23 +136,29 @@ function startGame() {
   document.querySelector("#enemyPoints").style.display = "flex";
   document.querySelector("#P1").style.display = "flex";
   document.querySelector("#P2").style.display = "flex";
-
-
 }
 
 counterArray = ["3", "2", "1", "FIGHT!"]
 let index = 0;
 const countdownEl = document.querySelector("#countDown")
 
-// function counter() {
-//   if (index < counterArray.length) {
-//     countdownEl.textContent = counterArray[index];
-//     countdownEl.style.animation = "none";
-//     countdownEl.offsetHeight;
-//     countdownEl.style.animation = "fade 1s linear";
-//     index++
-//     setTimeout(counter, 1000);
-//   } else {
-//     countdownEl.textContent = "";
-//   }
-// }
+function counter() {
+  if (index < counterArray.length) {
+    countdownEl.textContent = counterArray[index];
+    countdownEl.style.animation = "none";
+    countdownEl.offsetHeight;
+
+    if (counterArray[index] === "FIGHT!") {
+      countdownEl.style.animation = "blinkTwice 0.5s step-start forwards";
+    } else {
+      countdownEl.style.animation = "fadeIn 1s linear"; // forwards = the element keeps the final keyframe state, step-start = jumps immediately at the start of each step (no smooth fading, just instant change).
+    }
+
+    index++
+    setTimeout(counter, 1000);
+  } else {
+    countdownEl.textContent = "";
+  }
+
+  if (index === 4) startGame = true;
+}

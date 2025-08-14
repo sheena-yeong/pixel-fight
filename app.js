@@ -8,6 +8,7 @@ let round = 1;
 let canAttack = true;
 let gameOver = false;
 let isReady = false;
+let startGame = false;
 
 canvas.width = 1024;
 canvas.height = 576;
@@ -171,7 +172,7 @@ function jump(character) {
 }
 
 function animate() {
-  if (!isReady) return
+  if (!isReady) return;
   window.requestAnimationFrame(animate);
 
   c.clearRect(0, 0, canvas.width, canvas.height);
@@ -200,7 +201,7 @@ function animate() {
   }
 
   // player movement
-  if (!player.dead) {
+  if (!player.dead && startGame) {
     if (keys.a.pressed && player.lastKey === "a") {
       player.velocity.x = -5;
       player.switchSprite("run");
@@ -219,20 +220,22 @@ function animate() {
   }
 
   // enemy movement
-  if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
-    enemy.velocity.x = -5;
-    enemy.switchSprite("run");
-  } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight") {
-    enemy.velocity.x = 5;
-    enemy.switchSprite("run");
-  } else {
-    enemy.switchSprite("idle");
-  }
+  if (!enemy.dead && startGame) {
+    if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
+      enemy.velocity.x = -5;
+      enemy.switchSprite("run");
+    } else if (keys.ArrowRight.pressed && enemy.lastKey === "ArrowRight") {
+      enemy.velocity.x = 5;
+      enemy.switchSprite("run");
+    } else {
+      enemy.switchSprite("idle");
+    }
 
-  if (enemy.velocity.y < 0) {
-    enemy.switchSprite("jump");
-  } else if (enemy.velocity.y > 0) {
-    enemy.switchSprite("fall");
+    if (enemy.velocity.y < 0) {
+      enemy.switchSprite("jump");
+    } else if (enemy.velocity.y > 0) {
+      enemy.switchSprite("fall");
+    }
   }
 
   // Collision detection
@@ -284,18 +287,19 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (event) => {
-  console.log(event.key)
   if (event.key === "r") {
-    resetGame()
+    resetGame();
   } else if (event.key === "Enter" && !isReady) {
     isReady = true;
     animate();
-    decreaseTimer();
-    startGame();
-    console.log("Ready!")
+    counter();
+    showHUD();
+    
+    if (startGame) decreaseTimer();
+    console.log("Ready!");
   }
 
-  if (!player.dead) {
+  if (!player.dead && startGame) {
     switch (event.key) {
       case "d":
         keys.d.pressed = true;
@@ -314,7 +318,7 @@ window.addEventListener("keydown", (event) => {
     }
   }
 
-  if (!enemy.dead) {
+  if (!enemy.dead && startGame) {
     switch (event.key) {
       case "ArrowRight":
         keys.ArrowRight.pressed = true;

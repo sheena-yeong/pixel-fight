@@ -1,4 +1,6 @@
 # pixel-fight
+<img width="1034" height="588" alt="Screenshot 2025-08-14 at 20 14 31" src="https://github.com/user-attachments/assets/aa851e9d-3800-4055-98df-5d1674e536b2" />
+
 <strong>Welcome to Pixel Fight!</strong></br>
 Play it here: https://sheena-yeong.github.io/pixel-fight/
 
