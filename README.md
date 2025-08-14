@@ -21,7 +21,7 @@ Growing up, I loved playing mini browser games on Miniclip and Y8. My favorite w
 
 <img width="1024" alt="player 2 swings its katana" src="https://github.com/user-attachments/assets/a8658cc7-96a1-4547-91d2-1ca2ad72a648" />
 
-<hr>>
+<hr>
 <strong>Technologies used:</strong> HTML, CSS, JavaScript
 
 <strong>Stretch Goals:</strong>
