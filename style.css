@@ -14,3 +14,20 @@
     opacity: 0;
   }
 }
+
+#countDown {
+  font-size: 80px;
+  font-weight: bold;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: fade 1s linear;
+}
+
+@keyframes fade {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+}

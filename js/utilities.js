@@ -127,6 +127,32 @@ function resetGame() {
 
 function startGame() {
   document.querySelector("#round").innerHTML = "Round 1";
-  document.querySelector("#title").innerHTML = null;
+  document.querySelector("#title").style.display = "none";
+  document.querySelectorAll(".line").forEach(el => {el.style.display = "none";})
   document.querySelector("#pressEnter").innerHTML = null;
+
+  document.querySelector("#HUD").style.display = "flex";
+  document.querySelector("#playerPoints").style.display = "flex";
+  document.querySelector("#enemyPoints").style.display = "flex";
+  document.querySelector("#P1").style.display = "flex";
+  document.querySelector("#P2").style.display = "flex";
+
+
 }
+
+counterArray = ["3", "2", "1", "FIGHT!"]
+let index = 0;
+const countdownEl = document.querySelector("#countDown")
+
+// function counter() {
+//   if (index < counterArray.length) {
+//     countdownEl.textContent = counterArray[index];
+//     countdownEl.style.animation = "none";
+//     countdownEl.offsetHeight;
+//     countdownEl.style.animation = "fade 1s linear";
+//     index++
+//     setTimeout(counter, 1000);
+//   } else {
+//     countdownEl.textContent = "";
+//   }
+// }
