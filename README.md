@@ -12,12 +12,12 @@ Growing up, I loved playing mini browser games on Miniclip and Y8. My favorite w
 <img width="1024" alt="gameplay" src="https://github.com/user-attachments/assets/3b483b02-7a6a-4e55-bdbc-cb7ca1d759b7" />
 
 # Players
-<strong>Player</strong> 1 uses the controls "W, A, D" to move around and "Space" to attack. He has a longer katana range, but slower attack speed with higher damage per hit.
+<strong>Player 1</strong> uses the controls "W, A, D" to move around and "Space" to attack. He has a longer katana range, but slower attack speed with higher damage per hit.
 
 <img width="1024" alt="player 1 swings its katana" src="https://github.com/user-attachments/assets/5ad118a7-9f2c-4218-b6f4-08cd993278c0" />
 
 
-<strong>Player</strong> 2 uses the controls "←, →, ↑" to move around and "↓" to attack. He has a shorter katana range, with higher attack speed and lower damage per hit.
+<strong>Player 2</strong> uses the controls "←, →, ↑" to move around and "↓" to attack. He has a shorter katana range, with higher attack speed and lower damage per hit.
 
 <img width="1024" alt="player 2 swings its katana" src="https://github.com/user-attachments/assets/a8658cc7-96a1-4547-91d2-1ca2ad72a648" />
 
