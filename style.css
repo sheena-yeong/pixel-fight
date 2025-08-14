@@ -70,3 +70,12 @@
 #controls {
   width: 1024px;
 }
+
+#winCondition {
+  background-color: RGB(222, 156, 67);
+  width: 1024px;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
