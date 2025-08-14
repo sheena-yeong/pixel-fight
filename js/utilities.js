@@ -92,8 +92,8 @@ function nextRound() {
   enemy.position.x = 900;
   enemy.health = 100;
   enemy.dead = false;
-  enemy.image = player.sprites.idle.image;
-  enemy.framesMax = player.sprites.idle.framesMax;
+  enemy.image = enemy.sprites.idle.image;
+  enemy.framesMax = enemy.sprites.idle.framesMax;
   enemy.framesCurrent = 0;
   document.querySelector("#enemyHealth").style.width = enemy.health + "%";
 
