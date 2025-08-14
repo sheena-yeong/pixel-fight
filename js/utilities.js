@@ -34,14 +34,14 @@ function determineWinner({ player, enemy, timerID }) {
       document.querySelector("#displayText").innerHTML =
         "P1 WINS";
       document.querySelector("#roundCountDown").innerHTML =
-        "~ Thanks for playing ~";
-      document.querySelector("#reset").innerHTML = "Press R to Play Again"
+        "~ THANKS FOR PLAYING ~";
+      document.querySelector("#reset").innerHTML = "PRESS R TO PLAY AGAIN"
     } else {
       document.querySelector("#displayText").innerHTML =
         "P2 WINS";
       document.querySelector("#roundCountDown").innerHTML =
-        "~ Thanks for playing ~";
-      document.querySelector("#reset").innerHTML = "Press R to Play Again"
+        "~ THANKS FOR PLAYING ~";
+      document.querySelector("#reset").innerHTML = "PRESS R TO PLAY AGAIN"
     }
     return;
   }
@@ -110,7 +110,6 @@ function nextRound() {
 }
 
 function resetGame() {
-  console.log("Game Resetting")
   nextRound();
   round = 1;
   document.querySelector("#round").innerHTML = "Round " + round;
@@ -139,26 +138,24 @@ function showHUD() {
 }
 
 counterArray = ["3", "2", "1", "FIGHT!"]
-let index = 0;
+let counterIndex = 0;
 const countdownEl = document.querySelector("#countDown")
 
 function counter() {
-  if (index < counterArray.length) {
-    countdownEl.textContent = counterArray[index];
+  if (counterIndex < counterArray.length) {
+    countdownEl.textContent = counterArray[counterIndex];
     countdownEl.style.animation = "none";
     countdownEl.offsetHeight;
 
-    if (counterArray[index] === "FIGHT!") {
+    if (counterArray[counterIndex] === "FIGHT!") {
       countdownEl.style.animation = "blinkTwice 0.5s step-start forwards";
     } else {
       countdownEl.style.animation = "fadeIn 1s linear"; // forwards = the element keeps the final keyframe state, step-start = jumps immediately at the start of each step (no smooth fading, just instant change).
     }
 
-    index++
+    counterIndex++
     setTimeout(counter, 1000);
   } else {
     countdownEl.textContent = "";
   }
-
-  if (index === 4) startGame = true;
 }

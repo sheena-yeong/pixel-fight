@@ -8,7 +8,6 @@ let round = 1;
 let canAttack = true;
 let gameOver = false;
 let isReady = false;
-let startGame = false;
 
 canvas.width = 1024;
 canvas.height = 576;
@@ -201,7 +200,7 @@ function animate() {
   }
 
   // player movement
-  if (!player.dead && startGame) {
+  if (!player.dead && counterIndex === 4) {
     if (keys.a.pressed && player.lastKey === "a") {
       player.velocity.x = -5;
       player.switchSprite("run");
@@ -220,7 +219,7 @@ function animate() {
   }
 
   // enemy movement
-  if (!enemy.dead && startGame) {
+  if (!enemy.dead && counterIndex === 4) {
     if (keys.ArrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
       enemy.velocity.x = -5;
       enemy.switchSprite("run");
@@ -288,6 +287,8 @@ animate();
 
 window.addEventListener("keydown", (event) => {
   if (event.key === "r") {
+    counterIndex = 0; // reset counterIndex for play again
+    counter();
     resetGame();
   } else if (event.key === "Enter" && !isReady) {
     isReady = true;
@@ -295,11 +296,11 @@ window.addEventListener("keydown", (event) => {
     counter();
     showHUD();
     
-    if (startGame) decreaseTimer();
+    if (counterIndex === 4) decreaseTimer();
     console.log("Ready!");
   }
 
-  if (!player.dead && startGame) {
+  if (!player.dead && counterIndex === 4) {
     switch (event.key) {
       case "d":
         keys.d.pressed = true;
@@ -318,7 +319,7 @@ window.addEventListener("keydown", (event) => {
     }
   }
 
-  if (!enemy.dead && startGame) {
+  if (!enemy.dead && counterIndex === 4) {
     switch (event.key) {
       case "ArrowRight":
         keys.ArrowRight.pressed = true;
