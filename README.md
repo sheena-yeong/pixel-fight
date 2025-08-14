@@ -1,15 +1,15 @@
 # pixel-fight
-<img width="1034" height="588" alt="Screenshot 2025-08-14 at 20 14 31" src="https://github.com/user-attachments/assets/aa851e9d-3800-4055-98df-5d1674e536b2" />
-
 <strong>Welcome to Pixel Fight!</strong></br>
 Play it here: https://sheena-yeong.github.io/pixel-fight/
+<img width="1034" height="588" alt="Screenshot 2025-08-14 at 20 14 31" src="https://github.com/user-attachments/assets/aa851e9d-3800-4055-98df-5d1674e536b2" />
 
-<strong>About the Game</strong></br>
+# About the Game
 This is a 1v1 game where 2 players will strike each other with mid-ranged katanas to secure a win within 30 seconds. The game ends when a player secures 3 wins (ties are not wins). 
 
 Growing up, I loved playing mini browser games on Miniclip and Y8. My favorite were the ones where a friend and I would huddle around a keyboard, each using different keys to control our characters on the same screen. The competition made every match exciting, and it’s exactly why I chose to create a game in that same style.
-<img width="1045" height="676" alt="image" src="https://github.com/user-attachments/assets/f5bf2de0-6e39-40fa-9296-90b48956d4e0" />
+<img width="1031" height="581" alt="gameplay" src="https://github.com/user-attachments/assets/3b483b02-7a6a-4e55-bdbc-cb7ca1d759b7" />
 
+# Players
 Player 1 uses the controls "W, A, D" to move around and "Space" to attack. He has a longer katana range, but slower attack speed with higher damage per hit.
 <img width="950" height="531" alt="Screenshot 2025-08-13 at 15 10 39" src="https://github.com/user-attachments/assets/5ad118a7-9f2c-4218-b6f4-08cd993278c0" />
 
