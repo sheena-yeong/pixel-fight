@@ -12,6 +12,7 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
 
 function determineWinner({ player, enemy, timerID }) {
   clearTimeout(timerID);
+  gameOver = true;
   document.querySelector("#displayText").style.display = "flex";
   document.querySelector("#roundCountDown").style.display = "flex";
   document.querySelector("#reset").style.display = "flex";
@@ -66,6 +67,7 @@ function decreaseTimer() {
 let roundTimer = 8;
 let roundTimerID;
 
+// Counts down to next round and starts new round
 function decreaseRoundTimer() {
   if (roundTimer > 0) {
     canAttack = false;
@@ -73,12 +75,22 @@ function decreaseRoundTimer() {
     roundTimer--;
     document.querySelector("#roundCountDown").innerHTML =
       "NEXT ROUND STARTING IN " + roundTimer;
-  } else if (roundTimer === 0 && gameOver) {
-    nextRound();
+  } else if (roundTimer === 0) {
+    // Check if the game is completely over (someone won 3 points)
+    if (playerPoints === 3 || enemyPoints === 3) {
+      // Game is over, don't start new round
+      return;
+    } else {
+      // Start new round with counter
+      counterIndex = 0;
+      counter();
+      newRound();
+    }
   }
 }
 
-function nextRound() {
+// Resets sprites for new round
+function newRound() {
   round++;
 
   player.position.x = 80;
@@ -106,24 +118,27 @@ function nextRound() {
   timer = 31;
   gameOver = false;
   clearTimeout(timerID);
-  decreaseTimer();
+  clearTimeout(roundTimerID);
 }
 
+// Reset game when user presses play again
 function resetGame() {
-  nextRound();
-  round = 1;
+  round = 0;
   document.querySelector("#round").innerHTML = "Round " + round;
-
+  
   playerPoints = 0;
   document.querySelector("#playerPoints").innerHTML = "Points: " + playerPoints;
   
   enemyPoints = 0;
   document.querySelector("#enemyPoints").innerHTML = "Points: " + enemyPoints;
-
+  
   document.querySelector("#reset").innerHTML = null;
   document.querySelector("#reset").style.display = "none";
+
+  newRound();
 }
 
+// Show HUD
 function showHUD() {
   document.querySelector("#round").innerHTML = "Round 1";
   document.querySelector("#title").style.display = "none";
@@ -141,18 +156,21 @@ counterArray = ["3", "2", "1", "FIGHT!"]
 let counterIndex = 0;
 const countdownEl = document.querySelector("#countDown")
 
+// Conut down before fight starts
 function counter() {
   if (counterIndex < counterArray.length) {
     countdownEl.textContent = counterArray[counterIndex];
     countdownEl.style.animation = "none";
     countdownEl.offsetHeight;
+    document.querySelector("#timer").innerHTML = 30;
 
     if (counterArray[counterIndex] === "FIGHT!") {
       countdownEl.style.animation = "blinkTwice 0.5s step-start forwards";
+      console.log("counterIndex is " + counterIndex);
+      decreaseTimer()
     } else {
       countdownEl.style.animation = "fadeIn 1s linear"; // forwards = the element keeps the final keyframe state, step-start = jumps immediately at the start of each step (no smooth fading, just instant change).
     }
-
     counterIndex++
     setTimeout(counter, 1000);
   } else {

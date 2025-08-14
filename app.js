@@ -288,16 +288,13 @@ animate();
 window.addEventListener("keydown", (event) => {
   if (event.key === "r") {
     counterIndex = 0; // reset counterIndex for play again
-    counter();
     resetGame();
+    counter();
   } else if (event.key === "Enter" && !isReady) {
     isReady = true;
     animate();
     counter();
     showHUD();
-    
-    if (counterIndex === 4) decreaseTimer();
-    console.log("Ready!");
   }
 
   if (!player.dead && counterIndex === 4) {
