@@ -134,7 +134,7 @@ class Fighter extends Sprite {
 
     // draw hitbox
     // c.strokeStyle = "red";
-    // c.strokeRect(this.position.x, this.position.y, this.width, this.height);
+    // c.strokeRect(this.position.x, this.position.y, this.width, this.height); 
   }
 
   attack() {

@@ -17,12 +17,12 @@ function determineWinner({ player, enemy, timerID }) {
   document.querySelector("#reset").style.display = "flex";
 
   if (player.health === enemy.health) {
-    document.querySelector("#displayText").innerHTML = "Tie";
+    document.querySelector("#displayText").innerHTML = "TIE";
   } else if (player.health > enemy.health) {
-    document.querySelector("#displayText").innerHTML = "Player 1 Wins a Point";
+    document.querySelector("#displayText").innerHTML = "P1 WINS A POINT";
     playerPoints += 1;
   } else if (enemy.health > player.health) {
-    document.querySelector("#displayText").innerHTML = "Player 2 Wins a Point";
+    document.querySelector("#displayText").innerHTML = "P2 WINS A POINT";
     enemyPoints += 1;
   }
 
@@ -72,7 +72,7 @@ function decreaseRoundTimer() {
     roundTimerID = setTimeout(decreaseRoundTimer, 1000);
     roundTimer--;
     document.querySelector("#roundCountDown").innerHTML =
-      "Next Round in " + roundTimer;
+      "NEXT ROUND STARTING IN " + roundTimer;
   } else if (roundTimer === 0 && gameOver) {
     nextRound();
   }
@@ -105,6 +105,7 @@ function nextRound() {
   roundTimer = 8;
   timer = 31;
   gameOver = false;
+  clearTimeout(timerID);
   decreaseTimer();
 }
 
@@ -122,4 +123,10 @@ function resetGame() {
 
   document.querySelector("#reset").innerHTML = null;
   document.querySelector("#reset").style.display = "none";
+}
+
+function startGame() {
+  document.querySelector("#round").innerHTML = "Round 1";
+  document.querySelector("#title").innerHTML = null;
+  document.querySelector("#pressEnter").innerHTML = null;
 }

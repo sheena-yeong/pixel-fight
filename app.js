@@ -7,6 +7,7 @@ let enemyPoints = 0;
 let round = 1;
 let canAttack = true;
 let gameOver = false;
+let isReady = false;
 
 canvas.width = 1024;
 canvas.height = 576;
@@ -161,8 +162,6 @@ const keys = {
   },
 };
 
-decreaseTimer();
-
 // Limit jump to only once
 function jump(character) {
   const onGroundChar = character.velocity.y === 0;
@@ -172,6 +171,7 @@ function jump(character) {
 }
 
 function animate() {
+  if (!isReady) return
   window.requestAnimationFrame(animate);
 
   c.clearRect(0, 0, canvas.width, canvas.height);
@@ -284,8 +284,15 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (event) => {
+  console.log(event.key)
   if (event.key === "r") {
     resetGame()
+  } else if (event.key === "Enter" && !isReady) {
+    isReady = true;
+    animate();
+    decreaseTimer();
+    startGame();
+    console.log("Ready!")
   }
 
   if (!player.dead) {

@@ -3,3 +3,14 @@
   font-family: "Press Start 2P", system-ui;
   font-size: 12px;
 }
+
+#pressEnter {
+  animation: blink 1s step-start infinite;
+  color: red;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
