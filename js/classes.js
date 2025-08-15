@@ -15,7 +15,7 @@ class Sprite {
     this.framesMax = framesMax;
     this.framesCurrent = 0;
     this.framesElapsed = 0;
-    this.framesHold = 5;
+    this.framesHold = 5; // this controls how fast it loops through each sprite frame
     this.offset = offset;
   }
 
