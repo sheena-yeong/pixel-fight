@@ -31,8 +31,6 @@ function determineWinner({ player, enemy, timerID }) {
   document.querySelector("#enemyPoints").innerHTML = "Points: " + enemyPoints;
 
   if (playerPoints === 3 || enemyPoints === 3) {
-    document.querySelector("#displayText").style.fontSize =
-        "20px";
     if (playerPoints > enemyPoints) {
       document.querySelector("#displayText").innerHTML =
         "P1 WINS";
