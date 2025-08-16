@@ -2,24 +2,24 @@
 <strong>Welcome to Pixel Fight!</strong></br>
 Play it here: https://sheena-yeong.github.io/pixel-fight/
 
-<img width="1034" height="588" alt="Screenshot 2025-08-14 at 20 14 31" src="https://github.com/user-attachments/assets/aa851e9d-3800-4055-98df-5d1674e536b2" />
+<img width="1034" height="588" alt="Screenshot 2025-08-14 at 20 14 31" src="./assets/readmeImages/titlescreen.png" />
 
 # About the Game
 This is a 1v1 game where 2 players will strike each other with mid-ranged katanas to secure a win within 30 seconds. The game ends when a player secures 3 wins (ties are not wins). 
 
 Growing up, I loved playing mini browser games on Miniclip and Y8. My favorite were the ones where a friend and I would huddle around a keyboard, each using different keys to control our characters on the same screen. The competition made every match exciting, and it’s exactly why I chose to create a game in that same style.
 
-<img width="1024" alt="gameplay" src="https://github.com/user-attachments/assets/3b483b02-7a6a-4e55-bdbc-cb7ca1d759b7" />
+<img width="1024" alt="gameplay" src="./assets/readmeImages/gameplay.png" />
 
 # Players
 <strong>Player 1</strong> uses the controls "W, A, D" to move around and "Space" to attack. He has a longer katana range, but slower attack speed with higher damage per hit.
 
-<img width="1024" alt="player 1 swings its katana" src="https://github.com/user-attachments/assets/5ad118a7-9f2c-4218-b6f4-08cd993278c0" />
+<img width="1024" alt="player 1 swings its katana" src="./assets/readmeImages/P1Attack.png" />
 
 
 <strong>Player 2</strong> uses the controls "←, →, ↑" to move around and "↓" to attack. He has a shorter katana range, with higher attack speed and lower damage per hit.
 
-<img width="1024" alt="player 2 swings its katana" src="https://github.com/user-attachments/assets/a8658cc7-96a1-4547-91d2-1ca2ad72a648" />
+<img width="1024" alt="player 2 swings its katana" src="./assets/readmeImages/P2Attack.png" />
 
 <hr>
 <strong>Technologies used:</strong> HTML, CSS, JavaScript
